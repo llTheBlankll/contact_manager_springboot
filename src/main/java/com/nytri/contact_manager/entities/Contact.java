@@ -27,12 +27,15 @@ public class Contact {
     @Column(name = "significant_date_label", length = 128)
     private String significantDateLabel;
 
-    @JoinColumn(name = "person_id")
-    @OneToOne(mappedBy = "contact")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "contact")
     private Person relatedPersonId;
 
     @Column(name = "related_person_relationship", length = 128)
     private String relatedPersonRelationship;
+
+    public Contact() {
+
+    }
 
     public Contact(Integer id, Integer personId, String phone, String email, LocalDate significantDate, String significantDateLabel, Person relatedPersonId, String relatedPersonRelationship) {
         this.id = id;
@@ -45,16 +48,8 @@ public class Contact {
         this.relatedPersonRelationship = relatedPersonRelationship;
     }
 
-    public Contact(Person relatedPersonId) {
-        this.relatedPersonId = relatedPersonId;
-    }
-
-    public Contact() {
-
-    }
-
     public Person getRelatedPersonId() {
-        return this.relatedPersonId;
+        return relatedPersonId;
     }
 
     public void setRelatedPersonId(Person relatedPersonId) {

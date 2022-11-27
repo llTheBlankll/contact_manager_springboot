@@ -41,18 +41,6 @@ public class Person {
 
     }
 
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-
-    public Person(Contact contact) {
-        this.contact = contact;
-    }
-
     public Integer getId() {
         return id;
     }
