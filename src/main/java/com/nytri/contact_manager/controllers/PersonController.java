@@ -1,8 +1,6 @@
 package com.nytri.contact_manager.controllers;
 
-import com.nytri.contact_manager.entities.Contact;
 import com.nytri.contact_manager.entities.Person;
-import com.nytri.contact_manager.repositories.ContactRepository;
 import com.nytri.contact_manager.repositories.PersonRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,25 +11,18 @@ import java.util.List;
 @RestController
 @Controller
 @CrossOrigin
-@RequestMapping("/api")
-public class MainController {
+@RequestMapping(path = "/api/person")
+public class PersonController {
 
     private final PersonRepository personRepository;
-    private final ContactRepository contactRepository;
 
-    public MainController(PersonRepository personRepository, ContactRepository contactRepository) {
-        this.personRepository = personRepository;
-        this.contactRepository = contactRepository;
+    public PersonController(PersonRepository personController) {
+        this.personRepository = personController;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/all_people")
+    @RequestMapping(method = RequestMethod.GET, path = "/all")
     public List<Person> all_people() {
         return this.personRepository.findAll();
-    }
-
-    @RequestMapping(method = RequestMethod.GET, path = "/all_contacts")
-    public List<Contact> all_contacts() {
-        return this.contactRepository.findAll();
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/search_people/by_firstName/{first_name}")
